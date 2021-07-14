@@ -2,6 +2,9 @@ package com.mcu.backend.apirest.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -16,23 +19,37 @@ import com.mcu.backend.apirest.models.Usuario;
 import com.mcu.backend.apirest.repository.IUsuarioRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+@Transactional
+public class UserService {
 	
 	
 	@Autowired
 	private IUsuarioRepository repository;
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usr =repository.findByNombre(username);
-		
-		List<GrantedAuthority> roles = new ArrayList(); // lista de roles creadas
-		
-		roles.add(new SimpleGrantedAuthority("ADMIN")); //creo el rol con el nombre admin
-		
-		UserDetails  userDetails = new User(usr.getNombre(), usr.getClave(), roles);
-		return userDetails;
+	
+	
+	public Optional<Usuario> getByNombre(String nombre){
+		return repository.findByNombre(nombre);
 	}
+	
+	public boolean existsByNombre(String nombre) {
+		return repository.existsByNombre(nombre);
+	}
+	
+	public void save(Usuario usuario) {
+		repository.save(usuario);
+	}
+	
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		Usuario usr =repository.findByNombre(username);
+//		
+//		List<GrantedAuthority> roles = new ArrayList(); // lista de roles creadas
+//		
+//		roles.add(new SimpleGrantedAuthority("ADMIN")); //creo el rol con el nombre admin
+//		
+//		UserDetails  userDetails = new User(usr.getNombre(), usr.getClave(), roles);
+//		return userDetails;
+//	}
 	
 	
 

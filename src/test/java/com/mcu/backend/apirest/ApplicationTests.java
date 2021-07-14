@@ -23,7 +23,7 @@ class ApplicationTests {
 	@Test
 	public void crearUsuarioTest() {
 		Usuario us = new Usuario();
-		us.setId(3);
+		us.setId(1);
 		us.setNombre("admin");
 		us.setClave(encoder.encode("123"));
 		Usuario retorno= repository.save(us);
