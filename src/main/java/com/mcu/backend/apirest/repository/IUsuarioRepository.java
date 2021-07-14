@@ -10,5 +10,6 @@ import com.mcu.backend.apirest.models.Usuario;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
+	public Usuario findByNombre(String nombre);
 
 }
