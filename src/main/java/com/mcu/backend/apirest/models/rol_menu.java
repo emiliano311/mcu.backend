@@ -35,7 +35,8 @@ public class rol_menu {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_rol", referencedColumnName = "id", insertable = false, updatable = false)
 	private Rol rol;
-
+	
+	private String url;
 	public Integer getId() {
 		return id;
 	}
@@ -68,7 +69,15 @@ public class rol_menu {
 		this.rol = rol;
 	}
 
+	public String getUrl() {
+		return url;
+	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	
 	
 	
 }

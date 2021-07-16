@@ -10,7 +10,7 @@ import com.mcu.backend.apirest.models.rol_menu;
 
 public interface IRolMenu extends JpaRepository<rol_menu, Integer> {
 	@Query(nativeQuery = true,value = " SELECT DISTINCT"
-			+ " rm.id,rm.nombre,rm.permiso,rm.id_rol FROM "
+			+ " rm.id,rm.nombre,rm.permiso,rm.id_rol,rm.url FROM "
 			+ "usuario u, usuario_rol urol,rol_menu rm ,rol r "
 			+ "WHERE u.id=urol.usuario_id AND urol.rol_id=r.id AND "
 			+ "r.id=rm.id_rol AND u.nombre= ?1 ")
