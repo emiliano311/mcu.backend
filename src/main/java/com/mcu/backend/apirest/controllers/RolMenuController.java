@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.mcu.backend.apirest.models.rol_menu;
 import com.mcu.backend.apirest.repository.IRolMenu;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/v")
 public class RolMenuController {
 
@@ -29,7 +31,7 @@ public class RolMenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RolMenuController.class);
 	
-	@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,produces = "application/json")
+	@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,headers="Accept= application/json")
 	private @ResponseBody List<rol_menu> getMenuList(@RequestParam(value = "data") String data){
 		logger.error("rolnombre:"+data);
 		if(data.isEmpty()) {
