@@ -30,11 +30,16 @@ public class RolMenuController {
 	private static final Logger logger = LoggerFactory.getLogger(RolMenuController.class);
 	
 	@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,produces = "application/json")
-	private @ResponseBody Optional<rol_menu> getMenuList(@RequestParam(value = "data") String data){
+	private @ResponseBody List<rol_menu> getMenuList(@RequestParam(value = "data") String data){
 		logger.error("rolnombre:"+data);
 		if(data.isEmpty()) {
-			return Optional.empty();
+			return null;
 		}
-		return iRolMenu.obtenerMenu(data);
+		List<rol_menu> listMenus = iRolMenu.obtenerMenu(data);
+		if(listMenus.isEmpty()) {
+			
+			return null;
+		}
+		return listMenus;
 	}
 }
