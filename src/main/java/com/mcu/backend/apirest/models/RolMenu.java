@@ -23,42 +23,26 @@ import com.fasterxml.jackson.core.sym.Name;
 
 
 @Entity
-@Table(name = "rol_menu")
-public class rol_menu {
+@Table(name = "rol_menues")
+public class RolMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String nombre;
-	
-	private String permiso;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_rol", referencedColumnName = "id", insertable = false, updatable = false)
 	private Rol rol;
 	
-	private String url;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_menu", referencedColumnName = "id", insertable = false, updatable = false)
+	private Menu menu;
+	
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getPermiso() {
-		return permiso;
-	}
-
-	public void setPermiso(String permiso) {
-		this.permiso = permiso;
 	}
 
 	public Rol getRol() {
@@ -69,14 +53,15 @@ public class rol_menu {
 		this.rol = rol;
 	}
 
-	public String getUrl() {
-		return url;
+	public Menu getMenu() {
+		return menu;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
+	
 	
 	
 	
