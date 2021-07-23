@@ -18,6 +18,7 @@ import org.thymeleaf.expression.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mcu.backend.apirest.interfaces.IMenu;
 import com.mcu.backend.apirest.models.RolMenu;
 import com.mcu.backend.apirest.repository.IRolMenu;
 
@@ -31,17 +32,17 @@ public class RolMenuController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RolMenuController.class);
 	
-	/*@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,headers="Accept= application/json")
-	private @ResponseBody List<RolMenu> getMenuList(@RequestParam(value = "data") String data){
+	@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,headers="Accept= application/json")
+	private @ResponseBody List<?> getMenuList(@RequestParam(value = "data") String data){
 		logger.error("rolnombre:"+data);
 		if(data.isEmpty()) {
 			return null;
 		}
-		List<RolMenu> listMenus = iRolMenu.obtenerMenu(data);
+		List<?> listMenus = iRolMenu.obtenerMenu(data);
 		if(listMenus.isEmpty()) {
 			
 			return null;
 		}
 		return listMenus;
-	}*/
+	}
 }

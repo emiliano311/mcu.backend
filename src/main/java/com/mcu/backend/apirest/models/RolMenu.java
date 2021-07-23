@@ -29,36 +29,26 @@ public class RolMenu {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_rol", referencedColumnName = "id", insertable = false, updatable = false)
-	private Rol rol;
+	private int id_rol;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_menu", referencedColumnName = "id", insertable = false, updatable = false)
-	private Menu menu;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id_menu", referencedColumnName = "id", insertable = false, updatable = false)
+	private int id_menu;
 	
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Rol getRol() {
-		return rol;
+	public int getId_rol() {
+		return id_rol;
 	}
 
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
+	public void setId_rol(int id_rol) {
+		this.id_rol = id_rol;
 	}
 
 	
