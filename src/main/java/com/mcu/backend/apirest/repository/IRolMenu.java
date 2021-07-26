@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.mcu.backend.apirest.interfaces.IMenu;
+import com.mcu.backend.apirest.interfaces.IOpcionesMenu;
 import com.mcu.backend.apirest.models.RolMenu;
 
 public interface IRolMenu extends JpaRepository<RolMenu, Integer> {
@@ -26,5 +27,11 @@ public interface IRolMenu extends JpaRepository<RolMenu, Integer> {
 			+ "LEFT JOIN menues AS m2 ON m2.id = item_menues.hijo "
 			+ " WHERE usuario.nombre= ?1 ")
 	List<IMenu> obtenerMenu(String rolnombre);
-	
+
+	@Query(nativeQuery = true, value = "SELECT im.id as idimenu,im.hijo as idhijo,im.padre as idpadre,menu.accion as menu_accion "
+			+ ",menu.nombre as menu_nombre,menu.tipo_menu as menu_tipo"
+			+ " FROM item_menues AS im "
+			+ "LEFT JOIN menues AS menu  ON menu.id = im.hijo "
+			+ "WHERE im.padre=?1")
+	List<IOpcionesMenu> obtenerOpcionesMenu(Integer idmenu);
 }

@@ -45,4 +45,18 @@ public class RolMenuController {
 		}
 		return listMenus;
 	}
+	
+	@RequestMapping(value = "/opmenu", method = RequestMethod.GET,params = "idmenu" ,headers="Accept= application/json")
+	private @ResponseBody List<?> getMenuOpList(@RequestParam(value = "idmenu") String idmenu){
+		logger.error("idmenu:"+idmenu);
+		if(idmenu.isEmpty()) {
+			return null;
+		}
+		List<?> listMenus = iRolMenu.obtenerOpcionesMenu(Integer.parseInt(idmenu));
+		if(listMenus.isEmpty()) {
+			
+			return null;
+		}
+		return listMenus;
+	}
 }
