@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.mcu.backend.apirest.interfaces.IListMenu;
 import com.mcu.backend.apirest.interfaces.IMenu;
 import com.mcu.backend.apirest.interfaces.IOpcionesMenu;
 import com.mcu.backend.apirest.models.RolMenu;
@@ -34,4 +35,19 @@ public interface IRolMenu extends JpaRepository<RolMenu, Integer> {
 			+ "LEFT JOIN menues AS menu  ON menu.id = im.hijo "
 			+ "WHERE im.padre=?1")
 	List<IOpcionesMenu> obtenerOpcionesMenu(Integer idmenu);
+	
+	
+	@Query(nativeQuery = true,value = "SELECT im.id AS iditem,"
+			+ "im.hijo AS idhijo,"
+			+ "im.padre AS idpadre"
+			+ ",menu2.nombre AS menunombrepadre,"
+			+ "menu.nombre AS menunombrehijo,"
+			+ "menu.accion,"
+			+ "r.id AS idrol,"
+			+ "r.rol_nombre AS rolnombre FROM item_menues im "
+			+ "LEFT JOIN rol_menues AS rolm ON rolm.id_menu = im.padre "
+			+ "LEFT JOIN rol AS r ON r.id=rolm.id_rol "
+			+ "LEFT JOIN menues AS menu ON menu.id=im.hijo "
+			+ "LEFT JOIN menues AS menu2 ON menu2.id=im.padre")
+	List<IListMenu> getListMenu();
 }

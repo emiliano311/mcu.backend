@@ -35,6 +35,15 @@ public class RolMenu {
 //	@JoinColumn(name = "id_menu", referencedColumnName = "id", insertable = false, updatable = false)
 	private int id_menu;
 	
+	
+	
+	
+	public RolMenu(int id_rol, int id_menu) {
+	super();
+	this.id_rol = id_rol;
+	this.id_menu = id_menu;
+}
+
 	public Integer getId() {
 		return id;
 	}

@@ -23,6 +23,57 @@ public class ItemMenu {
 	private int padre;
 	
 	private int hijo;
+
+	
+	public ItemMenu() {}
+	
+	
+	public ItemMenu(int padre, int hijo) {
+		super();
+		this.padre = padre;
+		this.hijo = hijo;
+	}
+
+
+	public ItemMenu(Menu menu, int padre, int hijo) {
+		super();
+		this.menu = menu;
+		this.padre = padre;
+		this.hijo = hijo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	public int getPadre() {
+		return padre;
+	}
+
+	public void setPadre(int padre) {
+		this.padre = padre;
+	}
+
+	public int getHijo() {
+		return hijo;
+	}
+
+	public void setHijo(int hijo) {
+		this.hijo = hijo;
+	}
+	
 	
 	
 	
