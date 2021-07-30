@@ -73,4 +73,15 @@ public class MenuController {
 		
 		return listmenu;
 	}
+	
+	@RequestMapping(value = "/getAllMenu", method = RequestMethod.GET,params = "tipo",headers = "Accept= application/json")
+	private @ResponseBody List<Menu> getAllMenus(@RequestParam(value = "tipo") String tipo){
+		List<Menu> listmenu= imenuRespository.findAll();
+		if(listmenu.isEmpty()) {
+			return null;
+		}
+		
+		return listmenu;
+	}
+	
 }
