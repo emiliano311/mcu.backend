@@ -50,4 +50,5 @@ public interface IRolMenu extends JpaRepository<RolMenu, Integer> {
 			+ "LEFT JOIN menues AS menu ON menu.id=im.hijo "
 			+ "LEFT JOIN menues AS menu2 ON menu2.id=im.padre")
 	List<IListMenu> getListMenu();
+	
 }

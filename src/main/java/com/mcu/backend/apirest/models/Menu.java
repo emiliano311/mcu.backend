@@ -21,7 +21,16 @@ public class Menu {
 	
 	private String accion;
 
+	public Menu() {}
 	
+	public Menu(int id, String tipoMenu, String nombre, String accion) {
+		super();
+		this.id = id;
+		this.tipoMenu = tipoMenu;
+		this.nombre = nombre;
+		this.accion = accion;
+	}
+
 	public Menu( String nombre, String accion,String tipoMenu) {
 		this.tipoMenu = tipoMenu;
 		this.nombre = nombre;

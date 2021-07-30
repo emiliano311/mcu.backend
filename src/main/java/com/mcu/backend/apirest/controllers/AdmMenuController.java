@@ -44,7 +44,7 @@ import com.mcu.backend.apirest.repository.IitemMenuRepository;
 @RestController
 @CrossOrigin
 @RequestMapping("/v")
-public class RolMenuController {
+public class AdmMenuController {
 
 	@Autowired
 	private IRolMenu iRolMenu;
@@ -57,7 +57,7 @@ public class RolMenuController {
 	
 	@Autowired
 	private IitemMenuRepository iitemMenuRepository;
-	private static final Logger logger = LoggerFactory.getLogger(RolMenuController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdmMenuController.class);
 	
 	@RequestMapping(value = "/menu", method = RequestMethod.GET,params = "data" ,headers="Accept= application/json")
 	private @ResponseBody List<?> getMenuList(@RequestParam(value = "data") String data){
@@ -98,32 +98,5 @@ public class RolMenuController {
 	}
 	
 	
-	@RequestMapping(value = "/getroles", method = RequestMethod.GET,headers = "Accept= application/json")
-	private @ResponseBody List<?> getRoles(){
-		List<?> listRoList= iRolRepository.findAll();
-		if(listRoList.isEmpty()) {
-			return null;
-		}
-		
-		return listRoList;
-	}
-	
-	@PostMapping("/nuevomenu")
-	public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoMenu nuevomenu, BindingResult bindingResult){
-		if(bindingResult.hasErrors()) {
-			return new ResponseEntity(new Mensaje("campos mal puestos"),HttpStatus.BAD_REQUEST);
-		}
-		Menu menu = new Menu(nuevomenu.getNombre(),nuevomenu.getAccion(),nuevomenu.getTipo_menu());
-		imenuRespository.save(menu);
-		
-		ItemMenu itemMenu = new ItemMenu(menu,Integer.parseInt(nuevomenu.getIdpadre()),Integer.parseInt(nuevomenu.getIdhijo()));
-		iitemMenuRepository.save(itemMenu);
-		
-		RolMenu rolMenu = new RolMenu(Integer.parseInt(nuevomenu.getIdrol()),menu.getId());
-		
-		iRolMenu.save(rolMenu);
-		
-		return new ResponseEntity(new Mensaje("menu guardado"),HttpStatus.CREATED);
-	}
-	
+
 }
